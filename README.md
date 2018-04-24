@@ -3,12 +3,7 @@ Japanese Holiday
 
 ### Usage
 
-Works with AMD, CommonJS and browser environments.
-
-```js
-// AMD
-define(['moment-jpnholiday'], function(moment) { moment().short() });
-```
+Works with CommonJS and browser environments.
 
 ```js
 // CommonJS
