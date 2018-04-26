@@ -109,7 +109,7 @@
       let result = null;
 
       // 全ての祝日を判定
-      HOLIDAYS.forEach(item => {
+      HOLIDAYS.forEach(function(item) {
         if (result) return;
         res = item.method.apply(this, [item.month, item.date, item.startYear, item.endYear, item.label]);
         if (res) result = res;
