@@ -49,8 +49,8 @@
   }
   
 	// 年が祝日適用範囲内であるか
-	const _isWithinYear = function(moment, start, end) {
-		return !(moment.year() < start || end < moment.year());
+	const _isWithinYear = function(datetime, start, end) {
+		return !(!moment.isMoment(datetime) || datetime.year() < start || end < datetime.year());
   }
 
 	const HOLIDAYS = [
