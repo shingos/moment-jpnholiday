@@ -17,7 +17,7 @@
 		var w = 1; // 月曜日固定
 		var d1 = this.clone().startOf('month');
 		var w1 = d1.day();
-		let dx = (w - w1 < 0) ? 7 + w - w1 : w - w1;
+		var dx = (w - w1 < 0) ? 7 + w - w1 : w - w1;
 		dx = ++dx + (7 * (week - 1));
 
 		if (this.date() != dx) return false;
@@ -30,7 +30,7 @@
     else if (this.month() !== month) return false;
 
 		var year = this.year();
-		let dx = Math.floor(20.8431 + 0.242194 * (year - 1980) - Math.floor((year - 1980) / 4));
+		var dx = Math.floor(20.8431 + 0.242194 * (year - 1980) - Math.floor((year - 1980) / 4));
 
 		if (this.date() != dx) return false;
 		return name;
@@ -42,7 +42,7 @@
     else if (this.month() !== month) return false;
 
 		var year = this.year();
-		let dx = Math.floor(23.2488 + 0.242194 * (year - 1980) - Math.floor((year - 1980) / 4));
+		var dx = Math.floor(23.2488 + 0.242194 * (year - 1980) - Math.floor((year - 1980) / 4));
 
 		if (this.date() != dx) return false;
 		return name;
@@ -90,7 +90,7 @@
 	  // 祝日かどうか
     moment.fn.isJpnHolidayAndInLieu = function () {
       // 設定された休日
-      let res = this.isJpnHoliday();
+      var res = this.isJpnHoliday();
       if (res) return res;
   
       // 振替休日
@@ -106,7 +106,7 @@
     // 国民の休日と振替休日はチェックしない
     moment.fn.isJpnHoliday = function () {
       
-      let result = null;
+      var result = null;
 
       // 全ての祝日を判定
       HOLIDAYS.forEach(function(item) {
@@ -120,7 +120,7 @@
 
     // 振替休日
     moment.fn.isJpnHolidayInLieu = function () {
-      let now = this.clone();
+      var now = this.clone();
 
       // 施行日
       if (now.diff('1973-04-12') < 0) return null;
@@ -128,13 +128,13 @@
       // 当日が祝日の場合はfalse
       if (now.isJpnHoliday()) return null;
 
-      let result = null;
-      let num = (now.year() <= 2006) ? 1 : 7; //改正法なら最大7日間遡る
+      var result = null;
+      var num = (now.year() <= 2006) ? 1 : 7; //改正法なら最大7日間遡る
 
       now.add(-1, 'days');
-      let lieu = false;
+      var lieu = false;
 
-      for (let i = 0; i < num ; i++) {
+      for (var i = 0; i < num ; i++) {
         if (now.isJpnHoliday()) {
           // 祝日かつ日曜ならば振替休日
           if (now.day() === 0) {
@@ -153,7 +153,7 @@
 
     // 国民の休日かどうか
     moment.fn.isJpnNationalHoliday = function () {
-      let now = this.clone();
+      var now = this.clone();
       
       // 施行日
       if (now.diff('2003-01-01') < 0) return null;
