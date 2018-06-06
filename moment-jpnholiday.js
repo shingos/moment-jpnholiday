@@ -1,7 +1,7 @@
 (function () {
   
 	// 固定祝日かどうか
-	const _fixed = function(month, date, start, end, name) {
+	var _fixed = function(month, date, start, end, name) {
 		if (!_isWithinYear(this, start, end)) return false;
 		else if (this.month() !== month) return false;
 		else if (this.date() != date) return false;
@@ -9,14 +9,14 @@
   }
   
 	// 移動祝日
-	const _monday = function(month, week, start, end, name) {
+	var _monday = function(month, week, start, end, name) {
 		if (!_isWithinYear(this, start, end)) return false;
     else if (this.month() !== month) return false;
     
 		// 第*月曜日の日付を求める
-		const w = 1; // 月曜日固定
-		const d1 = this.clone().startOf('month');
-		const w1 = d1.day();
+		var w = 1; // 月曜日固定
+		var d1 = this.clone().startOf('month');
+		var w1 = d1.day();
 		let dx = (w - w1 < 0) ? 7 + w - w1 : w - w1;
 		dx = ++dx + (7 * (week - 1));
 
@@ -25,11 +25,11 @@
   }
   
 	// 春分の日
-	const _spring = function(month, day, start, end, name) {
+	var _spring = function(month, day, start, end, name) {
 		if (!_isWithinYear(this, start, end)) return false;
     else if (this.month() !== month) return false;
 
-		const year = this.year();
+		var year = this.year();
 		let dx = Math.floor(20.8431 + 0.242194 * (year - 1980) - Math.floor((year - 1980) / 4));
 
 		if (this.date() != dx) return false;
@@ -37,11 +37,11 @@
 	}
 
 	// 秋分の日
-	const _autumn = function(month, day, start, end, name) {
+	var _autumn = function(month, day, start, end, name) {
 		if (!_isWithinYear(this, start, end)) return false;
     else if (this.month() !== month) return false;
 
-		const year = this.year();
+		var year = this.year();
 		let dx = Math.floor(23.2488 + 0.242194 * (year - 1980) - Math.floor((year - 1980) / 4));
 
 		if (this.date() != dx) return false;
@@ -49,11 +49,11 @@
   }
   
 	// 年が祝日適用範囲内であるか
-	const _isWithinYear = function(datetime, start, end) {
+	var _isWithinYear = function(datetime, start, end) {
 		return !(!moment.isMoment(datetime) || datetime.year() < start || end < datetime.year());
   }
 
-	const HOLIDAYS = [
+	var HOLIDAYS = [
 		// 種別, 月(-1), 日or週, 開始年, 終了年, 祝日名
 		{method: _fixed,  month:  0, date:  1, startYear: 1949, endYear: 9999, label: '元日'},
 		{method: _fixed,  month:  0, date: 15, startYear: 1949, endYear: 1999, label: '成人の日'},
